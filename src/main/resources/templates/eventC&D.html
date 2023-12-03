@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>이벤트 생성 및 삭제</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        form {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="number"],
+        input[type="datetime-local"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        div#errorMessage, div#errorCreate, div#errorDelete {
+            color: #dc3545;
+            margin-bottom: 15px;
+        }
+
+    </style>
+</head>
+<body>
+<h1>이벤트 관리</h1>
+
+<!-- 이벤트 생성 폼 -->
+<h2>이벤트 생성</h2>
+<form action="/event" method="post">
+    <input type="text" name="name" placeholder="이벤트 이름" required><br>
+    <input type="number" name="limit_capacity" placeholder="최대 참여 인원"><br>
+    <textarea name="description" placeholder="이벤트 설명"></textarea><br>
+    <label for="startDate">시작 날짜:</label>
+    <input type="datetime-local" name="startDate" id="startDate" required><br>
+    <label for="endDate">종료 날짜:</label>
+    <input type="datetime-local" name="endDate" id="endDate" required><br>
+    <button type="submit">이벤트 생성</button>
+</form>
+
+<!-- 생성 에러 메시지 -->
+<div id="errorCreate">{{#errorCreate}}{{.}}{{/errorCreate}}{{^errorCreate}}{{/errorCreate}}</div>
+
+<hr>
+
+<!-- 이벤트 삭제 폼 -->
+<h2>이벤트 삭제</h2>
+<form action="/eventdelete" method="post">
+    <input type="number" name="event_id" placeholder="삭제할 이벤트 ID" required><br>
+    <button type="submit">이벤트 삭제</button>
+</form>
+
+<!-- 삭제 에러 메시지 -->
+<div id="errorDelete">{{#errorDelete}}{{.}}{{/errorDelete}}{{^errorDelete}}{{/errorDelete}}</div>
+
+</body>
+</html>

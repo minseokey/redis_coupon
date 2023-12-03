@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>마이페이지</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        form {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="number"],
+        input[type="datetime-local"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        div#errorMessage, div#errorCreate, div#errorDelete {
+            color: #dc3545;
+            margin-bottom: 15px;
+        }
+
+    </style>
+</head>
+<body>
+<h1>마이페이지</h1>
+
+<!-- 사용자 정보 표시 -->
+<h2>사용자 정보</h2>
+<p>아이디: {{user.email}}</p>
+<p>이름: {{user.name}}</p>
+<p>권한: {{user.role}}</p>
+
+<!-- 사용자가 신청한 쿠폰 목록 -->
+
+{{#hasCoupons}}
+<h2>신청한 쿠폰</h2>
+{{/hasCoupons}}
+
+{{#coupons}}
+<div>
+    <p>쿠폰 ID: {{id}}</p>
+    <p>이벤트: {{event.name}}</p>
+</div>
+{{/coupons}}
+
+<!-- 사용자가 생성한 이벤트 목록 -->
+{{#hasEvents}}
+<h2>생성한 이벤트</h2>
+{{/hasEvents}}
+
+{{#events}}
+<div>
+    <p>ID: {{id}}</p>
+    <p>이름: {{name}}</p>
+    <p>설명: {{description}}</p>
+    <p>시작 날짜: {{startDate}}</p>
+    <p>종료 날짜: {{endDate}}</p>
+    <p>정원: {{limit_capacity}}</p>
+</div>
+{{/events}}
+</body>
+</html>

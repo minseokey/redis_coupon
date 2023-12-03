@@ -1,0 +1,74 @@
+version:
+  "3"
+services:
+  database:
+    image: mysql:8.0.31
+    container_name: database
+    environment:
+      MYSQL_DATABASE: coupon
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_PASSWORD: dlalstjr1!
+      TZ: 'Asia/Seoul'
+    ports:
+      - "3306:3306"
+    restart: always
+
+  application1:
+    image : coupon:latest
+    depends_on:
+      - database
+    container_name: application1
+    restart: always
+    ports:
+     - "8081:80"
+    environment:
+     SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/coupon?serverTimezone=Asia/Seoul
+     SPRING_DATASOURCE_USERNAME: root
+     SPRING_DATASOURCE_PASSWORD: dlalstjr1!
+
+  application2:
+    image : coupon:latest
+    depends_on:
+      - database
+    container_name: application2
+    restart: always
+    ports:
+      - "8082:80"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/coupon?serverTimezone=Asia/Seoul
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: dlalstjr1!
+
+  application3:
+    image : coupon:latest
+    depends_on:
+      - database
+    container_name: application3
+    restart: always
+    ports:
+      - "8083:80"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/coupon?serverTimezone=Asia/Seoul
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: dlalstjr1!
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    restart: always
+    command: redis-server --port 6379
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - application1
+      - application2
+      - application3
+    restart: always
