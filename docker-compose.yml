@@ -14,39 +14,39 @@ services:
     restart: always
 
   application1:
-    image : coupon:latest
+    image : minseokey/coupon:0.1
     depends_on:
       - database
     container_name: application1
     restart: always
     ports:
-     - "8081:80"
+     - "8081:8081"
     environment:
      SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/coupon?serverTimezone=Asia/Seoul
      SPRING_DATASOURCE_USERNAME: root
      SPRING_DATASOURCE_PASSWORD: dlalstjr1!
 
   application2:
-    image : coupon:latest
+    image : minseokey/coupon:0.1
     depends_on:
       - database
     container_name: application2
     restart: always
     ports:
-      - "8082:80"
+      - "8082:8082"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/coupon?serverTimezone=Asia/Seoul
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: dlalstjr1!
 
   application3:
-    image : coupon:latest
+    image : minseokey/coupon:0.1
     depends_on:
       - database
     container_name: application3
     restart: always
     ports:
-      - "8083:80"
+      - "8083:8083"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/coupon?serverTimezone=Asia/Seoul
       SPRING_DATASOURCE_USERNAME: root
