@@ -26,7 +26,7 @@ public class RedisConfig {
         redisTemplate.setConnectionFactory(redisConnectionFactory());
         return redisTemplate;
     }
-    @Bean
+    @Bean(name = "customtaskScheduler")
     public TaskScheduler taskScheduler() {
         ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
         scheduler.setPoolSize(10); // 적절한 스레드 풀 크기 설정
@@ -35,5 +35,4 @@ public class RedisConfig {
         scheduler.setWaitForTasksToCompleteOnShutdown(true);
         return scheduler;
     }
-
 }

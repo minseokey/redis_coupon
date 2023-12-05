@@ -21,7 +21,7 @@ public class EventScheduler {
 
     private final CouponService couponService;
     private final EventRepository eventRepository;
-    private final TaskScheduler taskScheduler;
+    private final TaskScheduler customtaskScheduler;
     private final ConcurrentHashMap<Long, ScheduledFuture<?>> scheduledTasks = new ConcurrentHashMap<>();
     // ScheduledExecutorService 초기화
     private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
@@ -59,7 +59,7 @@ public class EventScheduler {
             }
         };
 
-        ScheduledFuture<?> future = taskScheduler.scheduleAtFixedRate(
+        ScheduledFuture<?> future = customtaskScheduler.scheduleAtFixedRate(
                 task,
                 Instant.now(), // 시작 시간을 현재 시간으로 설정
                 Duration.ofMillis(1000) // 1초 간격
