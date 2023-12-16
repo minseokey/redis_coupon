@@ -39,7 +39,6 @@ public class EventController {
             return "redirect:/event";
         }
     }
-
     @PostMapping("/eventdelete")
     @Secured("ROLE_ADMIN")
     public String delete(Long event_id, RedirectAttributes redirectAttributes) {
@@ -54,7 +53,6 @@ public class EventController {
             return "redirect:/event";
         }
     }
-
     @GetMapping("/event")
     @Secured("ROLE_ADMIN")
     public String getEvent() {

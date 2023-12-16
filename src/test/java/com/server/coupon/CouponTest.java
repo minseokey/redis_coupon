@@ -7,6 +7,7 @@ import com.server.coupon.domain.event.service.EventService;
 import com.server.coupon.domain.user.entity.User;
 import com.server.coupon.domain.user.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -40,6 +41,7 @@ public class CouponTest {
     }
 
     @Test
+    @DisplayName("싱글쓰레드 테스트")
     void 쿠폰_발급_싱글쓰레드_테스트() throws InterruptedException {
 
         // 8명의 사용자 생성, 하나의 이벤트에 일제히 참여를 12번씩 -> 총 96번
@@ -96,6 +98,7 @@ public class CouponTest {
     }
 
     @Test
+    @DisplayName("멀티쓰레드 테스트")
     void 쿠폰_발급_멀티쓰레드_테스트() throws InterruptedException {
         // 기본 로직은 위와 동일 하지만 80개의 쓰레드의 각각의 인원이 동시에 이벤트참여
         // 1. 이벤트 생성

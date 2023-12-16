@@ -25,6 +25,7 @@ services:
      SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/coupon?serverTimezone=Asia/Seoul
      SPRING_DATASOURCE_USERNAME: root
      SPRING_DATASOURCE_PASSWORD: dlalstjr1!
+     TZ: "Asia/Seoul"
 
   application2:
     image : minseokey/coupon:0.1
@@ -38,7 +39,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/coupon?serverTimezone=Asia/Seoul
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: dlalstjr1!
-
+      TZ: "Asia/Seoul"
   application3:
     image : minseokey/coupon:0.1
     depends_on:
@@ -51,6 +52,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/coupon?serverTimezone=Asia/Seoul
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: dlalstjr1!
+      TZ: "Asia/Seoul"
 
   redis:
     container_name: redis
@@ -59,6 +61,8 @@ services:
       - "6379:6379"
     restart: always
     command: redis-server --port 6379
+    environment:
+        TZ: "Asia/Seoul"
 
   nginx:
     image: nginx:latest
@@ -72,3 +76,5 @@ services:
       - application2
       - application3
     restart: always
+    environment:
+        TZ: "Asia/Seoul"

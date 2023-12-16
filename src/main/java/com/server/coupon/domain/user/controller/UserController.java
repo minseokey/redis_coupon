@@ -38,7 +38,7 @@ public class UserController {
         model.addAttribute("user", Email);
         List<Event> events = eventService.getAll();
         model.addAttribute("events", events);
-        model.addAttribute("isAdmin", user != null && user.getRole() == ROLE.ADMIN);;
+        model.addAttribute("isAdmin", user != null && user.getRole() == ROLE.ADMIN);
         return "index";
     }
     // 아이디 중복 체크
